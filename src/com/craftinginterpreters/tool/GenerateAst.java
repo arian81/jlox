@@ -18,7 +18,8 @@ public class GenerateAst {
                 "Binary   : Expr left, Token operator, Expr right",
                 "Grouping : Expr expression",
                 "Literal  : Object value",
-                "Unary    : Token operator, Expr right"
+                "Unary    : Token operator, Expr right",
+                "Ternary : Expr condExpr, Token condOperator, Expr middleExpr, Token elseOperator, Expr elseExpr"
         ));
     }
 
@@ -54,7 +55,7 @@ public class GenerateAst {
     private static void defineVisitor(PrintWriter writer, String baseName, List<String> types) {
         writer.println("  interface Visitor<R> {");
 
-        for (String type: types){
+        for (String type : types) {
             String typeName = type.split(":")[0].trim();
             writer.println("    R visit" + typeName + baseName + "(" + typeName + " " + baseName.toLowerCase() + ");");
 

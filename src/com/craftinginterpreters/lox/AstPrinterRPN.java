@@ -55,4 +55,9 @@ public class AstPrinterRPN implements Expr.Visitor<String> {
         }
         return expr.right.accept(this) + " " + operator;
     }
+
+    @Override
+    public String visitTernaryExpr(Expr.Ternary expr) {
+        return null; //i'm too lazy to implement this for now
+    }
 }

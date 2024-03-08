@@ -48,7 +48,32 @@ public class Parser {
     }
 
     private Expr expression() {
-        return equality();
+//        return equality();
+//        return comma();
+        return ternary();
+    }
+
+    private Expr comma() {
+        Expr expr = equality();
+
+        while (match(TokenType.COMMA)) {
+            Token operator = previous();
+            Expr right = equality();
+            expr = new Expr.Binary(expr, operator, right);
+        }
+        return expr;
+    }
+
+    private Expr ternary() {
+        Expr expr = equality();
+        if (match(TokenType.QUESTION_MARK)) {
+            Token condOp = previous();
+            Expr then = expression();
+            Token elseOp = consume(TokenType.COLON, "Ternary operator requires a ':' to specify else branch.");
+            Expr elseBranch = ternary();
+            expr = new Expr.Ternary(expr, condOp, then, elseOp, elseBranch);
+        }
+        return expr;
     }
 
     private Expr equality() {
@@ -126,6 +151,26 @@ public class Parser {
             Expr expr = expression();
             consume(TokenType.RIGHT_PAREN, "Expect ')' after expression.");
             return new Expr.Grouping(expr);
+        }
+        if (match(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL)) {
+            error(previous(), "Missing left-hand operand");
+            equality();
+            return null;
+        }
+        if (match(TokenType.LESS, TokenType.LESS_EQUAL, TokenType.GREATER, TokenType.GREATER_EQUAL)) {
+            error(previous(), "Missing left-hand operand");
+            comparison();
+            return null;
+        }
+        if (match(TokenType.PLUS)) {
+            error(previous(), "Missing left-hand operand");
+            term();
+            return null;
+        }
+        if (match(TokenType.SLASH, TokenType.STAR)) {
+            error(previous(), "Missing left-hand operand");
+            factor();
+            return null;
         }
         throw error(peek(), "Expect expression.");
     }

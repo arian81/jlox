@@ -84,6 +84,14 @@ public class Scanner {
             case '*':
                 addToken(TokenType.STAR);
                 break;
+
+            case '?'://challenge token types
+                addToken(TokenType.QUESTION_MARK);
+                break;
+            case ':':
+                addToken(TokenType.COLON);
+                break;
+            // end of challenge token types
             case '!':
                 addToken(match('=') ? TokenType.BANG_EQUAL : TokenType.BANG);
                 break;
