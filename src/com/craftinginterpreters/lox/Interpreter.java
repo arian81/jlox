@@ -63,6 +63,11 @@ class Interpreter implements Expr.Visitor<Object> {
                 if (left instanceof String && right instanceof String) {
                     return left + (String) right;
                 }
+                //This adds support for addition as long as one side is a String
+//                if (left instanceof String || right instanceof String) {
+//                    return stringify(left) + stringify(right);
+//                }
+
                 if (left instanceof Double && right instanceof Double) {
                     return (double) left + (double) right;
                 }
@@ -70,6 +75,9 @@ class Interpreter implements Expr.Visitor<Object> {
             }
             case TokenType.SLASH -> {
                 checkNumberOperands(expr.operator, left, right);
+                if ((double) right == 0) {
+                    throw new RuntimeError(expr.operator, "Division by zero, What are you doing? ");
+                }
                 return (double) left / (double) right;
             }
             case TokenType.STAR -> {
