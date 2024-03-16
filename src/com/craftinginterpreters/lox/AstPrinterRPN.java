@@ -30,6 +30,11 @@ public class AstPrinterRPN implements Expr.Visitor<String> {
     }
 
     @Override
+    public String visitAssignExpr(Expr.Assign expr) {
+        return null;
+    }
+
+    @Override
     public String visitBinaryExpr(Expr.Binary expr) {
         return expr.left.accept(this) + " " + expr.right.accept(this) + " " + expr.operator.lexeme;
     }
@@ -59,5 +64,10 @@ public class AstPrinterRPN implements Expr.Visitor<String> {
     @Override
     public String visitTernaryExpr(Expr.Ternary expr) {
         return null; //i'm too lazy to implement this for now
+    }
+
+    @Override
+    public String visitVariableExpr(Expr.Variable expr) {
+        return null;
     }
 }
