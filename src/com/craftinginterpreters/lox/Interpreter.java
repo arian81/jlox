@@ -4,6 +4,7 @@ import java.util.List;
 
 class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
+    //    private static final Object uninitialized = new Object();
     private Environment environment = new Environment();
 
     void interpret(List<Stmt> statements) {
@@ -140,6 +141,13 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     @Override
     public Object visitVariableExpr(Expr.Variable expr) {
         return environment.get(expr.name);
+        // This is for allowing runtime error in uninitialized variables
+//        Object value = environment.get(expr.name);
+//        if (value == uninitialized) {
+//            throw new RuntimeError(expr.name,
+//                    "Variable must be initialized before use.");
+//        }
+//        return value;
     }
 
     private Object evaluate(Expr expression) {
@@ -199,6 +207,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     @Override
     public Void visitVarStmt(Stmt.Var stmt) {
         Object value = null;
+//        Object value = uninitialized; used to create runtime error for uninitialized variables
         if (stmt.initializer != null) {
             value = evaluate(stmt.initializer);
         }

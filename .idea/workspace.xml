@@ -12,6 +12,7 @@
     <list default="true" id="7479209e-1a87-473b-b1ed-a8b8c005963f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/craftinginterpreters/lox/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/craftinginterpreters/lox/Interpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/craftinginterpreters/lox/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/craftinginterpreters/lox/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +161,7 @@
       <workItem from="1710257673578" duration="1422000" />
       <workItem from="1710348841456" duration="9340000" />
       <workItem from="1710558928741" duration="4274000" />
-      <workItem from="1710692588987" duration="1966000" />
+      <workItem from="1710692588987" duration="2603000" />
     </task>
     <task id="LOCAL-00001" summary="feat: added scanner">
       <option name="closed" value="true" />
@@ -196,7 +197,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/craftinginterpreters/lox/Parser.java</url>
-          <line>124</line>
+          <line>126</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
