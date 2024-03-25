@@ -47,6 +47,11 @@ public class AstPrinter implements Expr.Visitor<String> {
     }
 
     @Override
+    public String visitLogicalExpr(Expr.Logical expr) {
+        return null;
+    }
+
+    @Override
     public String visitTernaryExpr(Expr.Ternary expr) {
         return parenthesize(expr.condOperator.lexeme + expr.elseOperator.lexeme, expr.condExpr, expr.middleExpr, expr.elseExpr);
     }

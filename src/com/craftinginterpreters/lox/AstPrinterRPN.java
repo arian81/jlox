@@ -62,6 +62,11 @@ public class AstPrinterRPN implements Expr.Visitor<String> {
     }
 
     @Override
+    public String visitLogicalExpr(Expr.Logical expr) {
+        return null;
+    }
+
+    @Override
     public String visitTernaryExpr(Expr.Ternary expr) {
         return null; //i'm too lazy to implement this for now
     }
